@@ -4,16 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -33,11 +24,15 @@ public class Company {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="Company_id", referencedColumnName="Company_id")
     private List<Employees> empDetails= new ArrayList<>();
-	
-	
-	
-	
-	
+
+	@ManyToMany(cascade = {
+			CascadeType.ALL
+	})
+	@JoinTable(
+			name = "company_customer", joinColumns = {@JoinColumn(name = "Company_id")},
+			inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+	private List<Customer> customers;
+
 	public Company(){
 		
 	}
