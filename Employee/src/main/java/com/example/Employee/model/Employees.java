@@ -32,7 +32,7 @@ public class Employees {
 	@Column(name="doj")
 	private Date emp_doj;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Company_id")
     private Company company;
 	
@@ -119,5 +119,15 @@ public class Employees {
 	}
 	public void setEmp_doj(Date emp_doj) {
 		this.emp_doj = emp_doj;
+	}
+
+	public Headquarter getHeadquarter() {
+		return headquarter;
+	}
+
+	public void setHeadquarter(Headquarter headquarter) {
+		this.headquarter = headquarter;
 	}	
+	
+	
 }

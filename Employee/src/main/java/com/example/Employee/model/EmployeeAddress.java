@@ -1,5 +1,6 @@
 package com.example.Employee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class EmployeeAddress {
 	@Column(name="country")
 	private String country;
 	
-	@OneToOne(mappedBy = "employeeAddress")
+	@OneToOne(mappedBy = "employeeAddress" , cascade = CascadeType.ALL)
 	private Employees employeeDetails;
 
 	public int getID() {
